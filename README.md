@@ -1,4 +1,4 @@
 codes
 =====
 
-code related to placement studies
+This repository contains codes related to placement studies.
