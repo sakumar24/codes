@@ -2,6 +2,8 @@
 #include<math.h>
 #include<stdlib.h>
 
+/** Works only if elemets are in range 0 to n-1 **/
+
 using namespace std;
 
 int hasDuplicate(int* a,int n)

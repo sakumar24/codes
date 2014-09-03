@@ -13,7 +13,7 @@ int hasDuplicate(int* a,int n)
 	for(int i=0;i<n;i++)
 	{
 		if(a[abs(a[i])] < 0)
-			return 1;
+			return 1;		
 		else
 			a[abs(a[i])] = -a[abs(a[i])] ;	
 	}
