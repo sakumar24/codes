@@ -1,0 +1,68 @@
+Following are the solution to the questions:
+
+Q.1:
+	The code given is vulenerable to buffer overflow. As it copies the string 'login' to 'buf' without checking that how much free space is there in buf currently.
+	We can overflow the buffer 'buf' in following ways:
+	1) Lets assume 'gecos' does't have any '&' character and it is copied complitely into 'buf'. As size of 'gecos' is 'BASE_SZ+2' and 'buf' size is 'BASE_SZ', 
+	   the last two characters from 'gecos' will be copied out of the buffer.
+	2) Now assume that 'gecos' has '&' character, so it will cause 'login' to copy into 'buf' using 'r_strcpy()' function. If this function does't have any check
+	   to prevent buffer overflow, then it will write to memory from the address upto which the 'gecos's' characters have been written to it(all char before '&').
+	   As the size of 'login' is already greater than that of 'buf', so definitely 'r_strcpy' will write some character out of the buffer.
+
+Q.2:
+	1) Use-after-Free:
+			* Use after free errors occur when a program continues to use a pointer after it has been freed.
+			* Use after free errors sometimes have no effect and other times cause a program to crash. It is technically feasible for the freed memory to be
+			re-allocated and for an attacker to use this reallocation to launch a buffer overflow attack.
+			* Following example illustrate use-after-free error in a C code:
+			
+			#include<stdio.h>
+			#include<stdlib.h>
+			int main()
+			{
+				char* buf = (char*) malloc(10);
+				buf = "sanjeev";			
+				free(buf);
+				
+				printf("\nAfter free buf:%s",buf); // --> Usign the buffer after it is freed.
+			return 0;
+			}
+			
+			* To exploit this issue we will generically perform the following steps: 
+			1) Program allocates and then later frees block A,
+			2) Attacker allocates block B, reusing the memory previously allocated to block A,
+			3) Attacker writes data into block B,
+			4) Program uses freed block A, accessing the data the attacker left there.
+	
+	2) 
+	 a) Integer overflow:
+			* Integer overflow occurs when an arithmetic operation attempts to create a numeric value that is too large to be represented within the 
+			  available storage space.
+			* Integer overflows can sometimes trigger buffer overflows which can be used to execute arbitrary code.
+			
+	 b) Heap overflow:
+			* A heap overflow is a type of buffer overflow that occurs in the heap data area.
+			* Memory on the heap is dynamically allocated by the application at run-time and typically contains program data.
+			* Exploitation is performed by corrupting this data in specific ways to cause the application to overwrite internal structures such as 
+			  linked list pointers.
+	 c) Connection between Integer overflow and heap overflow:	
+			* In some special case of integer overflow, it could lead to heap oveflow.
+			For example, if we define a integer 'x' and allocate memory to 'x' dynamically using 'malloc()' or similar function, then the memory to this variable,
+			'x' will be allocated from the heap. So integer overflow in this varable will result in a heap overflow.
+	 
+	 
+	3) Cross-Site Request Forgery:
+			* Cross-Site Request Forgery, attacks include a malicious exploit of a website in which a user will transmit malicious requests that the target 
+			website trusts without the user’s consent.
+			* An attacker will use CSRF to trick a victim into accessing a website or clicking a URL link that contains malicious or unauthorized requests.
+			* It is called ‘malicious’ since the CSRF attack will use the identity and privileges of the victim and impersonate them in order to perform any
+			actions desired by the attacker
+			* Example:
+				Let us assume a user, Alice, might be browsing a chat forum where another user, Bob, has posted a message. Suppose that Bob has crafted 
+				an HTML image element that references an action on Alice's bank's website (rather than an image file), e.g.,
+
+				Bob: Hello Alice! Look here:
+				<img src="http://bank.example.com/withdraw?account=Alice&amp;amount=1000000&amp;for=Bob">
+				
+				If Alice's bank keeps her authentication information in a cookie, and if the cookie hasn't expired, then the attempt by Alice's browser to load 
+				the image will submit the withdrawal form with her cookie, thus authorizing a transaction without Alice's approval.		

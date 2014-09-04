@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+
+using namespace std;
+
+int main()
+{
+	char str[]="This is an example";
+	char* out[20];
+	int c=0;
+	printf("str: ",str);
+
+	char* tok = strtok(str," ");
+	
+	while(tok != NULL)
+	{
+	//	out[c++] = tok;
+		printf("tok:%s ",tok);
+		tok = strtok(NULL," ");
+	}
+	
+//	for(int i=c;i>=0;i++)
+//		printf("%s ",out[i]);
+	printf("\n");
+return 0;
+}

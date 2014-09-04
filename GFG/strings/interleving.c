@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+
+void rec(char* str,char* str1,char* str2,int m,int n,int i)
+{
+	if(i == m+n)
+		printf("%s\n",str);
+	else
+	{
+		if(i < m)
+		{
+			str[i] = str1[0];
+			rec(str,str1+1,str2,m,n,i+1);
+		}	
+		else
+		{
+			str[i] = str2[0];
+			rec(str,str1,str2+1,m,n,i+1);
+		}	
+	}
+}
+
+int main()
+{
+	char* str1="AB";
+	char* str2="CD";
+	//cout<<"str1: "; getline(cin,str1);
+	//cout<<"str2: "; getline(cin,str2);
+
+	int m = strlen(str1);
+	int n = strlen(str2);
+	
+	char str[m+n];
+	str[m+n-1] = '\0';
+
+	rec(str,str1,str2,m,n,0);
+
+return 0;
+}

@@ -1,0 +1,19 @@
+#include<iostream>
+#include<stdlib.h>
+
+using namespace std;
+struct node
+{
+	int d;
+	struct node* next;
+};
+
+int main()
+{
+	struct node* n = (struct node*)malloc(sizeof(struct node));
+	n->d = 10;
+	n->next = NULL;
+	
+	cout<<n->d;
+return 0;
+}

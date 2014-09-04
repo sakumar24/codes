@@ -1,0 +1,37 @@
+#include<iostream>
+
+using namespace std;
+
+void maxReapted(int a[],int n)
+{	
+	cout<<"Array:";
+	for(int i=0;i<n;i++)
+		cout<<a[i]<<" ";
+	cout<<endl;
+	for(int i=0;i<n;i++)
+		a[a[i]]+=n;
+	int curMax = -1 ;
+	int max = -1;
+	int maxi = -1;
+	
+	for(int i=0;i<n;i++)
+	{
+		curMax = a[i] / n;
+		if(curMax > max)
+		{
+			max = curMax;
+			maxi = i;
+		}
+	}
+	cout<<"Max element:"<<maxi<<endl;
+	cout<<"count:"<<max<<endl;
+}
+
+int main()
+{
+	int n = 5;
+	int a[] = {1,2,3,4,3};
+
+	maxReapted(a,n);
+return 0;
+}

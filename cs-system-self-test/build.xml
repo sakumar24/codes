@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cs-system-self-test" default="cs-system-self-test.zip">
+	<property file="build.props" />
+	
+	<!-- Base library path -->
+	<path id="cs.lib.base">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="cs-system-self-test.compile.classpath">
+	    <pathelement path="$catalina.jar"/>
+		<pathelement path="$jackson-core-asl-1.9.5.jar"/>
+		<pathelement path="$axis.jar"/>
+		<pathelement path="$httpclient-4.2.jar"/>
+		<pathelement path="$log4j-1.2.17.jar"/>
+		<pathelement path="$httpcore-4.2.jar"/>
+		<pathelement path="jackson-mapper-asl-1.9.5.jar" />
+		<pathelement path="commons-logging-1.1.1.jar" />
+		<pathelement path="mysql-connector-java-5.1.6.jar" />
+		
+		<path refid="cs.lib.base"/>
+	</path>
+	
+	<target name="cs-system-self-test.init">
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${classes.dir}"/>
+	</target>
+	
+	<target name="cs-system-self-test.compile" depends="cs-system-self-test.init">
+		<javac debug="true" destdir="${classes.dir}" srcdir="src">
+			<classpath refid="cs-system-self-test.compile.classpath"/>
+		</javac>
+		<copy todir="${classes.dir}">
+			<fileset dir="${resources.dir}" includes="**/*" />
+		</copy>
+	</target>
+	
+	<!-- Base target for clean -->
+	<target name="cs-system-self-test-base.clean">
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="cs-system-self-test.clean" depends="cs-system-self-test-base.clean">
+		<delete file="${dist.dir}/cs-system-self-test.jar"/>
+	</target>
+	
+	<target name="cs-system-self-test.zip" depends="cs-system-self-test.clean, cs-system-self-test.init, cs-system-self-test.compile">
+		<jar destfile="${dist.dir}/cs-system-self-test.jar" 
+			basedir="${classes.dir}"
+		>
+		</jar>		
+		<zip destfile="${dist.dir}/cs-system-self-test.zip" >
+			<zipfileset dir="${project.dir}/dist" includes="cs-system-self-test.jar" />
+			<zipfileset dir="${lib.dir}" includes="catalina.jar" />
+			<zipfileset dir="${lib.dir}" includes="jackson-core-asl-1.9.5.jar" />
+			<zipfileset dir="${lib.dir}" includes="axis.jar" />
+			<zipfileset dir="${lib.dir}" includes="httpclient-4.2.jar" />
+			<zipfileset dir="${lib.dir}" includes="log4j-1.2.17.jar" />
+			<zipfileset dir="${lib.dir}" includes="httpcore-4.2.jar" />
+			<zipfileset dir="${lib.dir}" includes="jackson-mapper-asl-1.9.5.jar" />
+			<zipfileset dir="${lib.dir}" includes="commons-logging-1.1.1.jar" />
+			<zipfileset dir="${lib.dir}" includes="mysql-connector-java-5.1.6.jar" />
+		</zip>	
+	</target>
+
+</project>

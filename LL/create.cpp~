@@ -1,0 +1,106 @@
+#include<stdlib.h>
+#include<iostream>
+
+using namespace std;
+
+struct node
+{
+	int data;
+	struct node* next;
+};
+
+struct node* createList()
+{
+	struct node* head = NULL;
+	struct node* cur = NULL;
+	int x;
+	cout<<"Enter integers followed by -1"<<endl;
+	cin>>x;
+	
+	while(x != -1)
+	{
+		struct node* temp = (struct node*)malloc(sizeof(struct node));
+		temp->data = x;
+		temp->next = NULL;
+	// get head..
+		if(head == NULL)
+			head = temp;
+	// fix pointers if list is not empty
+		if(cur != NULL)
+			cur->next = temp;
+	
+		cur = temp;	
+		cin>>x;
+	}
+
+	return head;
+}
+
+void accessList(struct node* head)
+{
+	struct node* cur = head;
+	
+	while(cur)
+	{
+		cout<<cur->data<<" ";
+		cur = cur->next;
+	}	
+	cout<<endl;
+}
+void insert(struct node** head,int x,int pos)
+{
+	struct node* p = *head;
+	if(p == NULL)	// Empty list
+	{
+		p = (struct node*)malloc(sizeof(struct node));
+		p->data = x;
+		p->next = NULL;
+	}
+	else
+	{
+		struct node* temp = (struct node*)malloc(sizeof(struct node));
+		temp->data = x;
+		temp->next = NULL;
+		
+		if(pos == 1)
+		{
+			temp->next = p;
+			*head = temp;
+		}
+		else
+		{
+			struct node* q = p;
+			int c = 2;
+			while(c < pos && q!= NULL)
+			{
+				q = q->next;
+				c++;
+			}
+			temp->next = q->next;
+			q->next = temp;
+		}
+	}
+}
+int main()
+{
+	struct node* head  = createList();
+	accessList(head);
+
+	char ans;
+	cout<<"Insert?:";
+	cin>>ans;
+	while(ans == 'y')
+	{
+		int x,pos;
+		cout<<"\nEnter element and position:";
+		cin>>x>>pos;
+		
+		insert(&head,x,pos);	// call by address (head); so that it can be changed if needed.
+		
+		accessList(head);
+		
+	cout<<"\nInsert?:";
+	cin>>ans;	
+	}
+return 0;
+}

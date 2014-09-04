@@ -1,0 +1,1 @@
+#include<stdio.h>int main(){	char* str = "abcdefgh";	char str2[] = "abcdefgh";	printf("size:%d size2:%d",sizeof(str),sizeof(str2));return 0;}

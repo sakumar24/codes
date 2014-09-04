@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/sanjeevk/Downloads/apache-tomcat-7.0.53-windows-x64/apache-tomcat-7.0.53/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjeevk/Downloads/jackson-all-1.9.0.jar/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjeevk/Downloads/axis-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjeevk/Downloads/httpclient-4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjeevk/Downloads/apache-httpcomponents-httpcore.jar/apache-httpcomponents-httpcore.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjeevk/Downloads/apache-logging-log4j.jar/apache-logging-log4j.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

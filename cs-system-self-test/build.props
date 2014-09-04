@@ -1,0 +1,7 @@
+base.dir=..
+project.dir=.
+build.dir=${project.dir}/build
+lib.dir=${base.dir}/../lib
+dist.dir=${project.dir}/dist
+classes.dir=${build.dir}/classes
+resources.dir=${project.dir}/resources

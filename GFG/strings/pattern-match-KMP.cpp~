@@ -1,0 +1,45 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+	string str,pat;
+	cout<<"Pattern: " ; cin>>pat;
+	cout<<"String: " ; cin>>str;
+
+	int p_len = pat.length();
+	int s_len = str.length();
+
+// Make table for pattern:
+	int p_table[p_len];
+
+	int i=0, m_flag=0, j=1,curr = 0;
+	p_table[i] = -1;
+	p_table[j] = 0;
+
+	while(j < p_len-1)
+	{		
+		if(pat[i] == pat[j])
+		{
+			p_table[++j] = ++cur;
+			m_flag = 1;
+			i++;
+		}
+		else
+		{
+			if(m_flag == 0)
+				p_table[++j] = 0;			
+			else
+			{
+				cur = 0;
+				i = 0;
+			}
+		}
+	}
+	for(int i=0;i<p_len;i++)
+		cout<<p_table[i]<<" "
+	
+return 0;
+}
