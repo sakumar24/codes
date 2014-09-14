@@ -1,0 +1,5 @@
+Following are the observations in the assignment:
+
+1) The code given, was using TCP for sending the message to server. As in TCP there should be connection establishment, so at a time only one 	 client was able to send the message to server.
+
+2) After the modtifications, as we are using UDP so, there will not be any connection establishment. And hence more than one client can send 	messages to server at the same time. 
